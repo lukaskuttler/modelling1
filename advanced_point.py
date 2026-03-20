@@ -1,4 +1,5 @@
-from operator import add
+
+import math
 
 from color_point import ColorPoint
 
@@ -36,26 +37,27 @@ class AdvancePoint(ColorPoint):
         #add a new official color to the list
         cls.COLORS.append(color)
 
-        @staticmethod
-        def distance_2_points(p1, p2):
-            return((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2)**0.5
+    @staticmethod
+    def distance_2_points(p1, p2):
+        return ((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2)**0.5
 
-        @staticmethod
-        def from_dict(d):
-            x = d["x"]
-            y = d["y"]
-            color = d["color"]
-            return Advancepoint(x, y, color)
+    @staticmethod
+    def from_dict(d): # "factory" allows to create from a dictionary
+        x = d["x"]
+        y = d["y"]
+        color = d["color"]
+        return AdvancePoint(x, y, color)
 
-point_dict = {"x": 1, "y": 2, "color": "red"}
+point_dict = {"x" : 1, "y" : 2, "color" : "red"}
+p0 = AdvancePoint.from_dict(point_dict)
+print(p0)
 p1 = AdvancePoint(1, 2, "red")
 print(p1)
-p2 = AdvancePoint(3, 4, "white")
-print(p2)
+# p2 = AdvancePoint(1, 2, "pink")
 print(p1.x)
-#you call class methods via the class name instead of the instance name
+#p1.x = 3
+#You call class methods via the class name instead of the instance name
 AdvancePoint.add_color("coral")
 p3 = AdvancePoint(1, 2, "coral")
 print(p3)
 print(AdvancePoint.distance_2_points(p1, p3))
-#p1.x = 3
